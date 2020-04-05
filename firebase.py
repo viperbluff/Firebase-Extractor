@@ -1,6 +1,6 @@
 #!/usr/share/python
 
-import urllib,urllib2
+import urllib2
 from requests import get
 import sys
 import pyfiglet
@@ -24,7 +24,7 @@ def scrap_engine(y):
 	
 def fetch_firebase_data(data): 
 	json_data=get(data)
-	if json_data.status_code == 500:
+	if json_data.status_code == 200:
 		keywords=['token','id','password','api-key','url','email','username','number','userid']
 		for i in keywords:
 			result_match=re.search(i,json_data.text)
@@ -38,7 +38,7 @@ def fetch_firebase_data(data):
 
 def main():
 		if len(sys.argv)<2:
-			print "Usage:: python firebase.py FirebaseURL\n[*]You can run the tool directly if u don't have FirebaseURL  ::"
+			print "Usage:: python firebase.py FirebaseURL\n"
 			banner=pyfiglet.figlet_format("Firebase Extractor")
 			print banner
 		else:
